@@ -1,0 +1,496 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-brand: #ee7d14;
+    --color-brand-light: #f6bb6d;
+    --color-brand-dark: #df630a;
+    --color-bg: #fffaf3;
+    --color-surface: #ffffff;
+    --color-surface-warm: #fff8ef;
+    --color-text: #2d1b00;
+    --color-text-secondary: #8b6e4e;
+    --color-border: #f0dfc8;
+    --color-accent-yellow: #fbbf24;
+    --color-accent-orange: #f97316;
+  }
+
+  .dark {
+    --color-bg: #120e08;
+    --color-surface: #1e1710;
+    --color-surface-warm: #241c12;
+    --color-text: #fef3e2;
+    --color-text-secondary: #c4a882;
+    --color-border: #3d2e1e;
+    --color-accent-yellow: #f59e0b;
+    --color-accent-orange: #ea580c;
+  }
+
+  body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    @apply border-[var(--color-border)];
+    scrollbar-width: thin;
+    scrollbar-color: rgba(238, 125, 20, 0.22) transparent;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-[var(--color-surface)] rounded-2xl border shadow-sm;
+    backdrop-filter: blur(12px);
+  }
+
+  .warm-card {
+    @apply bg-gradient-to-br from-[var(--color-surface)] to-[var(--color-surface-warm)] rounded-2xl border shadow-sm;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-semibold px-6 py-2.5 rounded-xl
+           active:scale-[0.97] shadow-md hover:shadow-lg hover:shadow-brand-500/25;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-secondary {
+    @apply bg-[var(--color-surface)] hover:bg-brand-50 dark:hover:bg-brand-900/20 text-[var(--color-text)]
+           font-medium px-6 py-2.5 rounded-xl border border-brand-200 dark:border-brand-800 active:scale-[0.97];
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .btn-ghost {
+    @apply hover:bg-brand-50 dark:hover:bg-brand-900/20 text-[var(--color-text-secondary)]
+           font-medium px-4 py-2 rounded-xl;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 rounded-xl border border-brand-200 dark:border-brand-800/50 bg-[var(--color-surface)] text-[var(--color-text)]
+           placeholder:text-[var(--color-text-secondary)] focus:outline-none focus:ring-2
+           focus:ring-brand-400/40 focus:border-brand-400;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .section-title {
+    @apply text-xl font-display font-bold text-[var(--color-text)];
+  }
+
+  .page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-amber-500 via-brand-500 to-orange-600 bg-clip-text text-transparent;
+  }
+
+  .card-hover {
+    transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-hover:hover {
+    transform: translateY(-3px);
+    @apply shadow-xl shadow-brand-500/10 border-brand-300 dark:border-brand-700/60;
+  }
+
+  .warm-gradient {
+    @apply bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 dark:from-amber-950/30 dark:via-orange-950/20 dark:to-yellow-950/10;
+  }
+
+  .warm-gradient-strong {
+    @apply bg-gradient-to-br from-amber-400 via-brand-500 to-orange-500;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ==========================================================================
+   MODERN SLEEK SCROLLBARS
+   Replaces antiquated OS rectangular bars with fluid, pill-shaped handles
+   tinted in warm amber/orange tones.
+   ========================================================================== */
+
+/* Global WebKit scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(238, 125, 20, 0.2);
+  border-radius: 9999px;
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(238, 125, 20, 0.55);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(238, 125, 20, 0.25);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(238, 125, 20, 0.65);
+}
+
+/* Dedicated Side Menu Scrollbar */
+.sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(238, 125, 20, 0.2) transparent;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sidebar-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 8px 0;
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(238, 125, 20, 0.18);
+  border-radius: 9999px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-scroll:hover::-webkit-scrollbar-thumb {
+  background: rgba(238, 125, 20, 0.45);
+}
+
+.sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(238, 125, 20, 0.75);
+}
+
+.dark .sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgba(238, 125, 20, 0.25);
+}
+
+.dark .sidebar-scroll:hover::-webkit-scrollbar-thumb {
+  background: rgba(238, 125, 20, 0.5);
+}
+
+.dark .sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(238, 125, 20, 0.8);
+}
+
+/* Universal sleek custom-scrollbar utility */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(238, 125, 20, 0.22) transparent;
+  scroll-behavior: smooth;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(238, 125, 20, 0.2);
+  border-radius: 9999px;
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(238, 125, 20, 0.5);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(238, 125, 20, 0.75);
+}
+
+/* Chat container scrollbar */
+.chat-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(238, 125, 20, 0.25) transparent;
+}
+
+.chat-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: rgba(238, 125, 20, 0.25);
+  border-radius: 9999px;
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chat-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(238, 125, 20, 0.6);
+}
+
+/* ==========================================================================
+   FLUID & ORGANIC ANIMATIONS
+   Powered by smooth quintic easing curves for lush, effortless motion.
+   ========================================================================== */
+
+/* Fade in on scroll */
+.scroll-fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide in from left */
+.scroll-slide-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-slide-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Slide in from right */
+.scroll-slide-right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-slide-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Scale up */
+.scroll-scale-up {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-scale-up.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Stagger children with silky cascade */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stagger-children.visible > *:nth-child(1) { transition-delay: 0.00s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(2) { transition-delay: 0.06s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(3) { transition-delay: 0.12s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(4) { transition-delay: 0.18s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(5) { transition-delay: 0.24s; opacity: 1; transform: translateY(0); }
+.stagger-children.visible > *:nth-child(6) { transition-delay: 0.30s; opacity: 1; transform: translateY(0); }
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(14px) scale(0.985); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(18px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-18px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-6px) rotate(0.8deg); }
+}
+
+@keyframes pulse-warm {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(238, 125, 20, 0.4), 0 4px 12px rgba(238, 125, 20, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(238, 125, 20, 0), 0 6px 20px rgba(238, 125, 20, 0.25);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes paw-bounce {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  32% { transform: translateY(-9px) scale(1.05, 0.95); }
+  52% { transform: translateY(0) scale(0.97, 1.03); }
+  72% { transform: translateY(-2.5px) scale(1.015, 0.985); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.98); }
+}
+
+/* Animation Classes with Fluid Curves */
+.animate-fade-in {
+  animation: fadeIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-left {
+  animation: slideInFromRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float {
+  animation: float 4.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.animate-pulse-warm {
+  animation: pulse-warm 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-paw-bounce {
+  animation: paw-bounce 1.8s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+
+.animate-fade-out {
+  animation: fadeOut 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Shimmer loading */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface) 25%,
+    var(--color-surface-warm) 50%,
+    var(--color-surface) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Menu transitions */
+.menu-enter {
+  animation: scaleIn 0.22s cubic-bezier(0.16, 1, 0.3, 1), fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+}
+
+.menu-exit {
+  animation: fadeOut 0.16s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Drawer transitions */
+.drawer-enter {
+  animation: slideInFromRight 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Page transition */
+.page-enter {
+  animation: fadeInUp 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Loading screen */
+.loading-screen {
+  @apply fixed inset-0 z-[100] flex flex-col items-center justify-center;
+  background: linear-gradient(135deg, #fffaf3 0%, #fff3e0 50%, #ffe0b2 100%);
+}
+
+.dark .loading-screen {
+  background: linear-gradient(135deg, #120e08 0%, #1e1710 50%, #241c12 100%);
+}
